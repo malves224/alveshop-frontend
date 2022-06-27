@@ -7,6 +7,7 @@ import store from './store';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css';
 import './app.scss';
 
 Vue.config.productionTip = false;
