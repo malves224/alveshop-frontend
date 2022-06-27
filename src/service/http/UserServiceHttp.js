@@ -66,6 +66,10 @@ class UserServiceHttp {
     async update(idUser) {
       return this.instanceAxios.put(`${this.model}/${idUser}`);
     }
+
+    async destroy(idUser) {
+      return this.instanceAxios.delete(`${this.model}/${idUser}`);
+    }
 }
 
 export default UserServiceHttp;
