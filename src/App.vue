@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <b-button variant="danger">Button</b-button>
-    <b-button variant="success">Button</b-button>
-    <b-button variant="outline-primary">Button</b-button>
+    <HeaderNav></HeaderNav>
+    <router-view></router-view>
   </div>
 </template>
 <script>
+import HeaderNav from './components/HeaderNav/HeaderNav.vue';
+
 export default {
+  components: { HeaderNav },
 };
 </script>
 <style>
