@@ -25,6 +25,15 @@ class UserServiceHttp {
         console.log(error.response);
       }
     }
+
+    async findAll() {
+      try {
+        const users = await this.instanceAxios(this.model);
+        return users;
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
 }
 
 export default UserServiceHttp;
