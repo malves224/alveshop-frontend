@@ -1,0 +1,66 @@
+{
+  "env": {
+      "node": true
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:vue/essential",
+      "@vue/airbnb"
+  ],
+  "parserOptions": {
+    "parser": "@babel/eslint-parser"
+  },
+  "rules": {
+      "indent": [
+          "error",
+          2
+        ],
+        "linebreak-style": 0,
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "no-magic-numbers": [
+          "error",
+          {
+            "ignore": [
+              0,
+              1,
+              2,
+              100
+            ],
+            "ignoreArrayIndexes": true,
+            "enforceConst": true,
+            "detectObjects": false
+          }
+        ],
+        "no-console": [
+          "off"
+        ],
+        "no-param-reassign": [
+          "off"
+        ],
+        "consistent-return": [
+          "off"
+        ],
+        "no-undef": [
+          "off"
+        ],
+        "max-len": [
+          "error",
+          {
+            "code": 90,
+            "ignoreComments": true,
+            "ignoreUrls": true
+          }
+        ],
+        "complexity": [
+          "error",
+          15
+        ]
+  }
+}
