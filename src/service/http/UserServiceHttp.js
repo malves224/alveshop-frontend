@@ -26,10 +26,28 @@ class UserServiceHttp {
       }
     }
 
+    async create(payload) {
+      try {
+        const response = await this.instanceAxios(this.model, payload);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     async findAll() {
       try {
         const users = await this.instanceAxios(this.model);
         return users;
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+
+    async findOne(id) {
+      try {
+        const user = await this.instanceAxios(this.model, { params: { id } });
+        return user;
       } catch (error) {
         console.log(error.response);
       }
