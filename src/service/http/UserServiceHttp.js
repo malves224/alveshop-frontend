@@ -62,6 +62,10 @@ class UserServiceHttp {
         console.log(error.response);
       }
     }
+
+    async update(idUser) {
+      return this.instanceAxios.put(`${this.model}/${idUser}`);
+    }
 }
 
 export default UserServiceHttp;
