@@ -52,6 +52,16 @@ class UserServiceHttp {
         console.log(error.response);
       }
     }
+
+    async buyProduct({ idProduct, quantity }) {
+      try {
+        const response = await this.instanceAxios
+          .post(`${this.model}/sale`, { idProduct, quantity });
+        return response;
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
 }
 
 export default UserServiceHttp;
