@@ -1,3 +1,4 @@
+import router from '@/router';
 import axios from 'axios';
 import LocalStorage from '../localStorage/LocalStorage';
 
@@ -19,7 +20,8 @@ class HttpService {
       const isAuthenticated = !(message.includes('não encontrado')
         || message.includes('invalido'));
       if (!isAuthenticated) {
-        console.log('redirect login com mensagem');
+        router.push({ name: 'login' });
+        console.log('redirect login com mensagem', message);
         return;
       }
       console.log('settar mensagem: ', message);
