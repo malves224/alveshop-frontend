@@ -1,54 +1,42 @@
 import axios from 'axios';
+import LocalStorage from '../localStorage/LocalStorage';
+import HttpService from './HttpService';
 
-class UserServiceHttp {
-    urlbase;
+class UserServiceHttp extends HttpService {
+  constructor() {
+    super();
+    this.model = '/user';
+  }
 
-    model;
+  async authenticate(loginInfo) {
+    const response = await axios.post(`${this.model}/login`, loginInfo);
+    LocalStorage.set('credentials', response.data);
+    return response;
+  }
 
-    constructor(urlBase, model, localStorage = { get: () => console.log('get') }) {
-      this.urlBase = urlBase;
-      this.model = model;
-      this.instanceAxios = axios.create({
-        baseURL: urlBase,
-      });
-      this.localStorage = localStorage;
-    }
+  async create(payload) {
+    return axios.post(this.model, payload);
+  }
 
-    async authenticate(loginInfo, action = 'login') {
-      const response = await this.instanceAxios
-        .post(`${this.model}/${action}`, loginInfo);
-      this.instanceAxios.defaults.headers = { authorization: response.data.token };
-      return response;
-    }
+  async findAll() {
+    return axios(this.model);
+  }
 
-    async create(payload) {
-      const response = await this.instanceAxios(this.model, payload);
-      return response;
-    }
+  async findOne(id) {
+    return axios(`${this.model}/${id}`);
+  }
 
-    async findAll() {
-      const users = await this.instanceAxios(this.model);
-      return users;
-    }
+  async buyProduct({ idProduct, quantity }) {
+    return axios.post(`${this.model}/sale`, { idProduct, quantity });
+  }
 
-    async findOne(id) {
-      const user = await this.instanceAxios(this.model, { params: { id } });
-      return user;
-    }
+  async update(idUser) {
+    return axios.put(`${this.model}/${idUser}`);
+  }
 
-    async buyProduct({ idProduct, quantity }) {
-      const response = await this.instanceAxios
-        .post(`${this.model}/sale`, { idProduct, quantity });
-      return response;
-    }
-
-    async update(idUser) {
-      return this.instanceAxios.put(`${this.model}/${idUser}`);
-    }
-
-    async destroy(idUser) {
-      return this.instanceAxios.delete(`${this.model}/${idUser}`);
-    }
+  async destroy(idUser) {
+    return axios.delete(`${this.model}/${idUser}`);
+  }
 }
 
 export default UserServiceHttp;
