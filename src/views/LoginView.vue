@@ -1,10 +1,15 @@
 <template>
   <div class="container-login">
-    <b-card class="card-login">
-      <component :is="ActionComponent" />
-      <b-button @click="changeAction">
-        {{ inLogin ? "CADASTRAR" : "VOLTAR" }}
-      </b-button>
+    <b-card width>
+      <div class="card-login">
+        <component :is="ActionComponent" />
+        <b-button
+          :variant="inLogin ? 'success' : 'outline'"
+          size="sm"
+          @click="changeAction">
+            {{ inLogin ? "CADASTRA-SE" : "VOLTAR" }}
+        </b-button>
+      </div>
     </b-card>
   </div>
 </template>
@@ -42,9 +47,25 @@ export default {
 
 .card-login {
   display: flex;
-  width: 40%;
-  min-width: 250px;
-  max-width: 320px;
-  height: 280px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  width: 45vw;
+  max-width: 300px;
+  min-width: 220px;
+  height: 300px;
+}
+
+.card-login > button {
+  width: 120px;
+}
+
+.container-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 82%;
 }
 </style>

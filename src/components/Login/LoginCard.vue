@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>Login</h1>
-    <b-input />
-    <b-input type="password" />
-    <b-button>ENTRAR</b-button>
+  <div class="container-form">
+    <h2>Login</h2>
+    <b-input placeholder="Digite seu email" id="email" />
+    <b-input placeholder="Digite sua senha" type="password" />
+    <b-button variant="danger">Acessar conta</b-button>
   </div>
 </template>
 <script>
