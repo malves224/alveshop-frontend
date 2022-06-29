@@ -1,15 +1,15 @@
 <template>
-  <div class="container-form">
+  <div @keydown.enter="login" class="container-form">
     <h2>Login</h2>
-    <b-input v-model="email" placeholder="Digite seu email" id="email" />
-    <b-input
-      v-model="password"
-      placeholder="Digite sua senha"
-      type="password"
-    />
-    <b-button @click="login" variant="danger"
-      >{{ loading ? "Aguarde.." : "Acessar conta" }}
-    </b-button>
+      <b-input v-model="email" placeholder="Digite seu email" id="email" />
+      <b-input
+        v-model="password"
+        placeholder="Digite sua senha"
+        type="password"
+      />
+      <b-button @click="login" variant="danger"
+        >{{ loading ? "Aguarde.." : "Acessar conta" }}
+      </b-button>
   </div>
 </template>
 <script>
