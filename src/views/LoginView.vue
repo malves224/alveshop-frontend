@@ -36,13 +36,21 @@ export default {
     changeAction() {
       this.ActionComponent = this.inLogin ? 'RegisterCard' : 'LoginCard';
     },
+    checkIfUserAutenticate() {
+      const user = this.getUser;
+      const tokenIsValid = user.token; // verificar token
+      if (tokenIsValid) {
+        this.$router.push({ name: 'home' });
+      }
+    },
   },
-  beforeMount() {
-    const user = this.getUser;
-    const tokenIsValid = user.token; // verificar token
-    if (tokenIsValid) {
-      this.$router.push({ name: 'home' });
-    }
+  watch: {
+    getUser() {
+      this.checkIfUserAutenticate();
+    },
+  },
+  mounted() {
+    this.checkIfUserAutenticate();
   },
 };
 </script>

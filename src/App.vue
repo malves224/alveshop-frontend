@@ -36,6 +36,8 @@ export default {
     const userLocalStorage = LocalStorage.get('user');
     if (user.token && !userLocalStorage) {
       LocalStorage.set('user', user);
+    } else {
+      this.setUser(userLocalStorage);
     }
   },
 };
