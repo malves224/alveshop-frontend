@@ -10,7 +10,8 @@
         <b-button
           :variant="inLogin ? 'success' : 'outline'"
           size="sm"
-          @click="changeAction">
+          @click="changeAction"
+        >
             {{ inLogin ? "CADASTRA-SE" : "VOLTAR" }}
         </b-button>
       </div>
