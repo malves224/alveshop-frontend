@@ -20,6 +20,10 @@ export default {
       type: String,
       require: true,
     },
+    setOpen: {
+      type: Function,
+      require: true,
+    },
   },
   computed: {
     isOpen: {
@@ -27,7 +31,7 @@ export default {
         return this.open;
       },
       set(value) {
-        return this.$store.commit('setAllertOpen', value);
+        this.setOpen(value);
       },
     },
   },
