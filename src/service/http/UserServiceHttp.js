@@ -30,8 +30,8 @@ class UserServiceHttp extends HttpService {
     return axios.post(`${this.model}/sale`, { idProduct, quantity });
   }
 
-  async update(idUser) {
-    return axios.put(`${this.model}/${idUser}`);
+  async update(idUser, payload) {
+    return axios.put(`${this.model}/${idUser}`, payload);
   }
 
   async destroy(idUser) {
