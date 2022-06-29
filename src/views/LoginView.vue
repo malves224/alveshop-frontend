@@ -16,6 +16,7 @@
 <script>
 import RegisterCard from '@/components/Login/RegisterCard.vue';
 import LoginCard from '@/components/Login/LoginCard.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: { LoginCard, RegisterCard },
@@ -26,6 +27,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['getUser']),
     inLogin() {
       return this.ActionComponent === 'LoginCard';
     },
@@ -34,6 +36,13 @@ export default {
     changeAction() {
       this.ActionComponent = this.inLogin ? 'RegisterCard' : 'LoginCard';
     },
+  },
+  beforeMount() {
+    const user = this.getUser;
+    const tokenIsValid = user.token; // verificar token
+    if (tokenIsValid) {
+      this.$router.push({ name: 'home' });
+    }
   },
 };
 </script>
