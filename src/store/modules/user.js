@@ -13,6 +13,9 @@ export default {
     getUser(state) {
       return state.user;
     },
+    userLogged(state) {
+      return !!state.user.token; // verificar se o token esta valido
+    },
   },
   mutations: {
     setUser(state, payload) {
@@ -34,6 +37,12 @@ export default {
       };
       commit('setUser', user);
       LocalStorage.set('user', user);
+    },
+    removeUserBindingLocalStorage({ commit }) {
+      commit('setUser', {
+        id: '', name: '', email: '', token: '',
+      });
+      LocalStorage.remove('user');
     },
   },
 };
