@@ -19,7 +19,15 @@ class HttpService {
       return config;
     });
 
-    axios.interceptors.response.use((response) => response, (error) => {
+    axios.interceptors.response.use((response) => {
+      if (response.data.message) {
+        storeVuex.dispatch('openAlert', {
+          message: response.data.message,
+          variant: 'info',
+        });
+      }
+      return response;
+    }, (error) => {
       const { response } = error;
       const { data: { message } } = response;
       const isAuthenticated = !(message.includes('não encontrado')
