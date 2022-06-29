@@ -1,9 +1,9 @@
 export default {
   state: {
     allert: {
-      variant: 'danger',
-      isOpen: true,
-      message: 'trestes',
+      variant: 'info',
+      isOpen: false,
+      message: '',
     },
   },
   getters: {
@@ -23,7 +23,6 @@ export default {
   },
   actions: {
     openAlert({ commit }, { message, variant }) {
-      console.log(variant);
       commit('setAllert', { message, variant, isOpen: true });
     },
   },
