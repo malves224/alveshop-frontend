@@ -18,9 +18,12 @@
 <script>
 export default {
   name: 'LoginCard',
+  props: {
+    emailInitial: String,
+  },
   data() {
     return {
-      email: '',
+      email: this.emailInitial,
       password: '',
       loading: false,
     };

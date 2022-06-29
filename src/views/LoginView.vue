@@ -2,7 +2,11 @@
   <div class="container-login">
     <b-card width>
       <div class="card-login">
-        <component :is="ActionComponent" />
+          <component
+            :handleCreatedUser="handleCreateUser"
+            :emailInitial="emailInitial"
+            :is="ActionComponent"
+          />
         <b-button
           :variant="inLogin ? 'success' : 'outline'"
           size="sm"
@@ -24,6 +28,7 @@ export default {
   data() {
     return {
       ActionComponent: 'LoginCard',
+      emailInitial: '',
     };
   },
   computed: {
@@ -42,6 +47,10 @@ export default {
       if (tokenIsValid) {
         this.$router.push({ name: 'home' });
       }
+    },
+    handleCreateUser(email) {
+      this.emailInitial = email;
+      this.ActionComponent = 'LoginCard';
     },
   },
   watch: {
