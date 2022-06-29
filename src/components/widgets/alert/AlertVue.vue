@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-alert show :variant="variant" dismissible fade v-model="isOpen">
+  <div class="container-alert">
+    <b-alert :variant="variant" dismissible fade v-model="isOpen">
       <p>{{ message }}</p>
     </b-alert>
   </div>
@@ -40,5 +40,19 @@ export default {
 };
 </script>
 <style lang="scss">
-// falta estilizar para o componente flutar e diminuir o tamanho.
+.container-alert {
+  position: absolute;
+  top: 20px;
+  left: 30vw;
+  width: 35vw;
+  max-width: 320px;
+  min-width: 280px;
+}
+
+@media (max-width: 400px) {
+  .container-alert {
+    left: 20vw;
+    min-width:190px
+  }
+}
 </style>
