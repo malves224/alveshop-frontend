@@ -15,14 +15,28 @@
 import { mapGetters, mapMutations } from 'vuex';
 import HeaderNav from './components/HeaderNav/HeaderNav.vue';
 import AlertVue from './components/widgets/alert/AlertVue.vue';
+import LocalStorage from './service/localStorage/LocalStorage';
 
 export default {
   components: { HeaderNav, AlertVue },
   computed: {
-    ...mapGetters(['getAllert']),
+    ...mapGetters(['getAllert', 'getUser']),
   },
   methods: {
-    ...mapMutations(['setAllertOpen']),
+    ...mapMutations(['setAllertOpen', 'setUser']),
+  },
+  beforeMount() {
+    const userLocalStorage = LocalStorage.get('user');
+    if (userLocalStorage) {
+      this.setUser(userLocalStorage);
+    }
+  },
+  updated() {
+    const user = this.getUser;
+    const userLocalStorage = LocalStorage.get('user');
+    if (user.token && !userLocalStorage) {
+      LocalStorage.set('user', user);
+    }
   },
 };
 </script>

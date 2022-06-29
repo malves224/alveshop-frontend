@@ -9,8 +9,12 @@ class HttpService {
     axios.defaults.baseURL = this.baseURL;
 
     axios.interceptors.request.use((config) => {
-      const userInfo = LocalStorage.get('credentials');
-      const token = userInfo ? userInfo.token : '';
+      const user = storeVuex.getters.getUser;
+      const userLocalStorage = LocalStorage.get('user');
+      if (user.token && !userLocalStorage) {
+        LocalStorage.set('user', user);
+      }
+      const token = userLocalStorage ? userLocalStorage.token : '';
       config.headers = { Authorization: token };
       return config;
     });
@@ -23,9 +27,9 @@ class HttpService {
       storeVuex.dispatch('openAlert', { message, variant: 'danger' });
       if (!isAuthenticated) {
         router.push({ name: 'login' });
-        return;
+        LocalStorage.remove('user');
       }
-      return error;
+      return Promise.reject(error);
     });
   }
 }

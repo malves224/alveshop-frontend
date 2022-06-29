@@ -1,5 +1,5 @@
 import axios from 'axios';
-import LocalStorage from '../localStorage/LocalStorage';
+import storeVuex from '@/store/';
 import HttpService from './HttpService';
 
 class UserServiceHttp extends HttpService {
@@ -10,7 +10,7 @@ class UserServiceHttp extends HttpService {
 
   async authenticate(loginInfo) {
     const response = await axios.post(`${this.model}/login`, loginInfo);
-    LocalStorage.set('credentials', response.data);
+    storeVuex.dispatch('setUserBindingLocalStorage', response.data);
     return response;
   }
 
