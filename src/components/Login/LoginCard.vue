@@ -7,8 +7,11 @@
         placeholder="Digite sua senha"
         type="password"
       />
-      <b-button @click="login" variant="danger"
-        >{{ loading ? "Aguarde.." : "Acessar conta" }}
+      <b-button
+        @click="login"
+        :disabled="loading"
+        :variant="loading ? '' : 'danger'"
+        >{{ loading ? "Aguarde..." : "Acessar conta" }}
       </b-button>
   </div>
 </template>
