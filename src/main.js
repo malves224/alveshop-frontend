@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import App from './App.vue';
-import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import '@/plugins/httpRequests';
 
+import './registerServiceWorker';
+import '@/plugins/httpRequests';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css';
