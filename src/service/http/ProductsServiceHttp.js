@@ -12,8 +12,6 @@ class ProductServiceHttp extends HttpService {
   }
 
   async findAll(params = {}) {
-    const price = params.rangePrice && params.rangePrice[0];
-    console.log(price);
     return axios.get(this.model, {
       params: {
         active: params.active,
