@@ -2,14 +2,14 @@
     <div class="search-bar">
         <b-input
             @keydown.enter="search"
-            v-model="searchTerm"
+            v-model="searchTerm.name"
             placeholder="Pesquse o que você quer...">
         </b-input>
         <p class="h5 d-flex align-items-center mb-0 pr-2 pl-1">
             <b-icon
                 class="cursor-pointer mr-3"
-                @click="searchTerm = ''"
-                v-show="searchTerm"
+                @click="searchTerm.name = ''"
+                v-show="searchTerm.name"
                 icon="x-lg"
             />
             <b-icon
@@ -21,19 +21,34 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'SearchNav',
   data() {
     return {
-      searchTerm: '',
+      searchTerm: {
+        name: '',
+      },
     };
   },
   methods: {
+    ...mapActions(['searchProducts']),
     search() {
-      console.log('pesquisar', this.searchTerm);
+      this.searchProducts(this.searchTerm);
       if (this.$route.name !== 'home') {
         this.$router.push({ name: 'home' });
       }
+    },
+  },
+  watch: {
+    searchTerm: {
+      handler() {
+        if (!this.searchTerm.name) {
+          this.searchProducts(this.searchTerm.name);
+        }
+      },
+      deep: true,
     },
   },
 };
