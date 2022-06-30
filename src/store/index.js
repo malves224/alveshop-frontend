@@ -7,16 +7,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    products: {},
+    products: [],
   },
   getters: {
-
+    getProducts(state) {
+      return state.products;
+    },
   },
   mutations: {
-
-  },
-  actions: {
-
+    setProducts(state, payload) {
+      state.products = payload
+        .sort((a, b) => {
+          const trueFirst = a.active ? -1 : 1;
+          return ((a.active === b.active) ? 0 : trueFirst);
+        });
+    },
   },
   modules: {
     allert,
