@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import allert from './modules/allert';
@@ -25,8 +26,11 @@ export default new Vuex.Store({
   },
   actions: {
     loadingProducts({ commit }) {
-      // eslint-disable-next-line no-underscore-dangle
       this._vm.$productService.findAll()
+        .then(({ data }) => commit('setProducts', data));
+    },
+    searchProducts({ commit }, payload) {
+      this._vm.$productService.findAll(payload)
         .then(({ data }) => commit('setProducts', data));
     },
   },
