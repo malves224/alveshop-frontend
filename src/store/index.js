@@ -23,6 +23,13 @@ export default new Vuex.Store({
         });
     },
   },
+  actions: {
+    loadingProducts({ commit }) {
+      // eslint-disable-next-line no-underscore-dangle
+      this._vm.$productService.findAll()
+        .then(({ data }) => commit('setProducts', data));
+    },
+  },
   modules: {
     allert,
     user,
